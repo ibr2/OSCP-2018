@@ -6,3 +6,65 @@ It operats on Port 25.
 
 could air in further attacks such as password attack.
 
+Ways to Enumarate:
+
+> nc -nv $IP 25
+VRFY bob
+250 2.1.5 <bob@redhat.acme.com? 
+VRFY dontexist
+
+
+cat users.txt
+root
+backup
+bob
+dick
+david
+harry
+apache
+igor
+ron
+mike
+harry
+joseph
+
+for user in $(cat users.txt); do echo VRFY $user |nc -nv -w 1 $IP 2>/dev/null |grep ^"250"; done
+
+---- Better solution -----
+
+Metasploit:
+>use auxiliary/scanner/smtp/smtp_enum
+>set RHOST $IP 
+> run 
+
+Nmap: 
+> ls -l /usr/share/nmap/scripts/* | grep smtp 
+> nmap --script smtp-enum-users.nse smtp-enum-users.methods={VRFY} -p 25 192.168.230.132
+
+smtp-user-enum:
+> smtp-user-enum -M VRFY -U Vulnix/smtp-users.txt -t 192.168.230.132
+
+smtp-users.txt containts:
+backup
+bin
+daaemon
+games
+gants
+irc
+libuuid
+list
+lp
+mail
+man
+messagebus
+news
+nobody
+postmaster
+proxy
+sshd
+sync
+sys
+syslog
+user
+uucp
+www-data
