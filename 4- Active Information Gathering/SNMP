@@ -4,14 +4,20 @@ Enumerating SNMP.
 Nmap:
 > nmap -sU -A --open -p 161 $IP 
 
-Snmpwalk: 
-> snmpwalk -c community -v1 $IP 
+> nmap -sU -Pn -p 161 192.168.56.103 --script=snmp-brute.nse
+
+
+
+to check the community string:
+> onesixtyone -c community.txt  192.168.230.133
 > cat community 
 public
 private
 manager
 
-> snmpwalk -c community -v $IP 1.3.6.1.2.1.25.4.2.1.2   // Checking for specific MIB 
+Snmpwalk: 
+> snmpwalk -c public -v1 $IP 
+> snmpwalk -c public -v $IP 1.3.6.1.2.1.25.4.2.1.2   // Checking for specific MIB 
 
 snmp-check:
 > snmp-check 192.168.230.133
