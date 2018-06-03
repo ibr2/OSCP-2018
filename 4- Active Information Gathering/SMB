@@ -9,6 +9,13 @@ smbclient //LAZYSYSADMIN/share -I 192.168.230.152 
 
 
 
+Null Session:
+
+> rpcclient -U "" $IP           \\ password is empty 
+> srvinfo
+> enumdomusers
+> getdompwinfo
+
 To extract 
 
 acccheck -v -t 192.168.230.152 -u username -P /usr/share/wordlists/dirb/common.txt
